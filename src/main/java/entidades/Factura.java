@@ -47,6 +47,15 @@ public class Factura implements Serializable {
     public Factura() {
     }
 
+    public Factura(String pk, Date fechaEmision, String descripcion, Double totalImporteFactura) {
+        this.pk = pk;
+        this.fechaEmision = fechaEmision;
+        this.descripcion = descripcion;
+        this.totalImporteFactura = totalImporteFactura;
+    }
+    
+    
+
     public Factura(String pk) {
         this.pk = pk;
     }

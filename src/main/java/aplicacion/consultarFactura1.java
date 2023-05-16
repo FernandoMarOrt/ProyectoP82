@@ -4,6 +4,11 @@
  */
 package aplicacion;
 
+import static aplicacion.BdFacturas.findAll;
+import entidades.Factura;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tania
@@ -48,15 +53,20 @@ public class consultarFactura1 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Consultar Factura");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 300, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 100));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 200, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 200, -1));
 
         jButton2.setBackground(new java.awt.Color(153, 102, 255));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Siguiente");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, -1, -1));
 
         jLabel11.setForeground(new java.awt.Color(153, 102, 255));
@@ -89,6 +99,34 @@ public class consultarFactura1 extends javax.swing.JFrame {
         //hacemos la ventana visible
         vi.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        
+        
+         List<Factura> listaFactura = findAll();
+
+        String pkBuscada = jTextField1.getText();
+
+        Factura aux = new Factura(pkBuscada);
+
+        if (listaFactura.contains(aux)) {
+
+            consultarFactura consulFac = new consultarFactura();
+
+            this.setVisible(false);
+            // Posición de la ventana
+            consulFac.setLocationRelativeTo(null);
+            // La ventana no se puede redimensionar
+            consulFac.setResizable(false);
+            //hacemos la ventana visible
+            consulFac.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "El codigo introducido no corresponde a ninguna factura en la lista");
+        }
+
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,11 @@
  */
 package aplicacion;
 
+import static aplicacion.BdFacturas.findAll;
+import entidades.Factura;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tania
@@ -15,6 +20,7 @@ public class modificarFactura1 extends javax.swing.JFrame {
      */
     public modificarFactura1() {
         initComponents();
+
     }
 
     /**
@@ -48,21 +54,28 @@ public class modificarFactura1 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Modificar Factura");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 300, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 320, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 100));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 200, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 200, -1));
+        jTextField1.getAccessibleContext().setAccessibleName("clavePMoficar");
 
         jButton2.setBackground(new java.awt.Color(153, 102, 255));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Siguiente");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, -1, -1));
+        jButton2.getAccessibleContext().setAccessibleName("SiguienteModificar");
 
         jLabel11.setForeground(new java.awt.Color(153, 102, 255));
         jLabel11.setText("Codigo Factura:");
         jLabel11.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(153, 102, 255), null));
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(153, 102, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -78,10 +91,10 @@ public class modificarFactura1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-         ventanaInicio vi = new ventanaInicio();
-    
-       this.setVisible(false);
- 
+        ventanaInicio vi = new ventanaInicio();
+
+        this.setVisible(false);
+
         // Posición de la ventana
         vi.setLocationRelativeTo(null);
         // La ventana no se puede redimensionar
@@ -89,6 +102,36 @@ public class modificarFactura1 extends javax.swing.JFrame {
         //hacemos la ventana visible
         vi.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        
+        //BOTON SIGUIENTE EL CUAL SI LA PK INTRODUCIDA NO CORRESPONDE A NINGUNA DE LA LISTA DE FACTURAS TE SALTA ERROR
+        
+        List<Factura> listaFactura = findAll();
+
+        String pkBuscada = jTextField1.getText();
+
+        Factura aux = new Factura(pkBuscada);
+
+        if (listaFactura.contains(aux)) {
+
+            modificarFactura modF1 = new modificarFactura();
+
+            this.setVisible(false);
+            // Posición de la ventana
+            modF1.setLocationRelativeTo(null);
+            // La ventana no se puede redimensionar
+            modF1.setResizable(false);
+            //hacemos la ventana visible
+            modF1.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "El codigo introducido no corresponde a ninguna factura en la lista");
+        }
+
+
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

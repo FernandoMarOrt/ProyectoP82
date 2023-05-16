@@ -4,6 +4,17 @@
  */
 package aplicacion;
 
+import static aplicacion.BdFacturas.findAll;
+import entidades.Factura;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tania
@@ -64,6 +75,11 @@ public class añadirFactura1 extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(153, 102, 255));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Añadir");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 400, -1, -1));
 
         jButton6.setBackground(new java.awt.Color(153, 102, 255));
@@ -81,14 +97,14 @@ public class añadirFactura1 extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 240, 20));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 240, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 240, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 240, 20));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 240, -1));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 240, -1));
 
         jLabel12.setForeground(new java.awt.Color(153, 102, 255));
         jLabel12.setText("Fecha de Emision:");
         jLabel12.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 102, 255), null));
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
         jLabel13.setBackground(new java.awt.Color(153, 102, 255));
         jLabel13.setForeground(new java.awt.Color(153, 102, 255));
@@ -110,7 +126,7 @@ public class añadirFactura1 extends javax.swing.JFrame {
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 240, -1));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 240, -1));
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 50, -1, -1));
@@ -123,11 +139,11 @@ public class añadirFactura1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        
+
         ventanaInicio vi = new ventanaInicio();
-    
-       this.setVisible(false);
- 
+
+        this.setVisible(false);
+
         // Posición de la ventana
         vi.setLocationRelativeTo(null);
         // La ventana no se puede redimensionar
@@ -135,6 +151,42 @@ public class añadirFactura1 extends javax.swing.JFrame {
         //hacemos la ventana visible
         vi.setVisible(true);
     }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+
+        List<Factura> listaFactura = findAll();
+
+        String pkBuscada = jTextField1.getText();
+
+        Factura aux = new Factura(pkBuscada);
+
+        if (listaFactura.contains(aux)) {
+
+            JOptionPane.showMessageDialog(null, "El codigo introducido ya corresponde a una factura en la base de datos");
+
+        } else {
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            String pk = jTextField1.getText();
+            Date fechaemision = null;
+            try {
+                fechaemision = dateFormat.parse(jTextField2.getText());
+            } catch (ParseException ex) {
+                Logger.getLogger(modificarFactura.class.getName()).log(Level.SEVERE, "Introduce la fecha en el formato correcto", ex);
+            }
+            String descripcion = jTextArea2.getText();
+            double totalImporteFactura = Double.valueOf(jTextField4.getText());
+
+            Factura nuevaFactura = new Factura(pk, fechaemision, descripcion, totalImporteFactura);
+
+            BdFacturas.createFactura(nuevaFactura);
+
+            JOptionPane.showMessageDialog(null, "Se ha crea");
+
+        }
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments
