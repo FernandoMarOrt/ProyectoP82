@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controladores;
+package controllers;
 
 import controladores.exceptions.NonexistentEntityException;
 import controladores.exceptions.PreexistingEntityException;
-import entidades.Factura;
+import entities.Factura;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package aplicacion;
+package application;
 
-import static aplicacion.BdFacturas.findAll;
-import entidades.Factura;
+import static application.BdFacturas.findAll;
+import entities.Factura;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,12 +19,12 @@ import javax.swing.JOptionPane;
  *
  * @author fer
  */
-public class añadirFactura extends javax.swing.JFrame {
+public class modificarFactura extends javax.swing.JFrame {
 
     /**
-     * Creates new form añadirFactura1
+     * Creates new form modificarFactura
      */
-    public añadirFactura() {
+    public modificarFactura() {
         initComponents();
     }
 
@@ -37,8 +37,8 @@ public class añadirFactura extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -52,29 +52,28 @@ public class añadirFactura extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagen1.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 80, 80));
 
         jPanel5.setBackground(new java.awt.Color(242, 230, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 110, 370));
 
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagen1.png"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 80, 80));
+
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Añadir Factura");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 270, 40));
+        jLabel10.setText("Modificar Factura");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 320, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 80));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 80));
 
         jButton5.setBackground(new java.awt.Color(153, 102, 255));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Añadir");
+        jButton5.setText("Modificar");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
@@ -128,9 +127,6 @@ public class añadirFactura extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 240, -1));
 
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 50, -1, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -138,38 +134,21 @@ public class añadirFactura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-
-        ventanaInicio vi = new ventanaInicio();
-
-        this.setVisible(false);
-
-        // Posición de la ventana
-        vi.setLocationRelativeTo(null);
-        // La ventana no se puede redimensionar
-        vi.setResizable(false);
-        //hacemos la ventana visible
-        vi.setVisible(true);
-    }//GEN-LAST:event_jButton6MouseClicked
-
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
 
-        List<Factura> listaFactura = findAll(); //Rellno la lista de facturas
+        List<Factura> listaFactura = findAll(); //Relleno la lista con las facturas de la base de datos
 
         String pkBuscada = jTextField1.getText();
 
         Factura aux = new Factura(pkBuscada);
 
-        if (listaFactura.contains(aux)) { //Busco en la lista la factura con la pk proporcionada
-            
-            //Si corresponde a una factura ya 
-            JOptionPane.showMessageDialog(null, "El codigo introducido ya corresponde a una factura en la base de datos");
+        if (listaFactura.contains(aux)) { //Si la lista con tiene la factura con la pk proporcionada
 
-        } else {
-            //Formato de la fecha
+            //Le doy formato a la fecha
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+            //Asigno todos los datos introducidos a la factura a modificar
             String pk = jTextField1.getText();
             Date fechaemision = null;
             try {
@@ -180,14 +159,38 @@ public class añadirFactura extends javax.swing.JFrame {
             String descripcion = jTextArea2.getText();
             double totalImporteFactura = Double.valueOf(jTextField4.getText());
 
-            Factura nuevaFactura = new Factura(pk, fechaemision, descripcion, totalImporteFactura);
+            Factura facturaModifi = new Factura(pk, fechaemision, descripcion, totalImporteFactura);
 
-            BdFacturas.createFactura(nuevaFactura);
 
-            JOptionPane.showMessageDialog(null, "Se ha creado la nueva factura");
+            JOptionPane.showMessageDialog(null, "Se ha modificado la factura");
+            
+            //Modifico la factura
+            BdFacturas.modifyFactura(facturaModifi);
+
+        } else { //Si no salta un error avisandole que no esta en la base de datos
+
+            JOptionPane.showMessageDialog(null, "El codigo introducido no corresponde a una factura de la base de datos");
 
         }
+
+
+
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+
+        ventanaInicio venIni = new ventanaInicio();
+
+        this.setVisible(false);
+
+        // Posición de la ventana
+        venIni.setLocationRelativeTo(null);
+        // La ventana no se puede redimensionar
+        venIni.setResizable(false);
+        //hacemos la ventana visible
+        venIni.setVisible(true);
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -206,21 +209,20 @@ public class añadirFactura extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(añadirFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(añadirFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(añadirFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(añadirFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new añadirFactura().setVisible(true);
+                new modificarFactura().setVisible(true);
             }
         });
     }
@@ -234,7 +236,6 @@ public class añadirFactura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;

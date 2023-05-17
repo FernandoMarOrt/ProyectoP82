@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package aplicacion;
+package application;
 
-import static aplicacion.BdFacturas.findAll;
-import entidades.Factura;
+import static application.BdFacturas.findAll;
+import entities.Factura;
 import java.util.List;
 import javax.swing.JOptionPane;
 

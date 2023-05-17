@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entidades;
+package entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -30,6 +30,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Factura.findByTotalImporteFactura", query = "SELECT f FROM Factura f WHERE f.totalImporteFactura = :totalImporteFactura")})
 public class Factura implements Serializable {
 
+    //ATRIBUTOS
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -44,6 +45,8 @@ public class Factura implements Serializable {
     @Column(name = "totalImporteFactura")
     private Double totalImporteFactura;
 
+    
+    //Constructores
     public Factura() {
     }
 
@@ -60,6 +63,7 @@ public class Factura implements Serializable {
         this.pk = pk;
     }
 
+    //GETTERS Y SETTERS
     public String getPk() {
         return pk;
     }
@@ -92,6 +96,7 @@ public class Factura implements Serializable {
         this.totalImporteFactura = totalImporteFactura;
     }
 
+    //EQUALS Y HASHCODE
     @Override
     public int hashCode() {
         int hash = 0;
@@ -112,6 +117,7 @@ public class Factura implements Serializable {
         return true;
     }
 
+    //TO STRING
     @Override
     public String toString() {
         return "entidades.Factura[ pk=" + pk + " ]";

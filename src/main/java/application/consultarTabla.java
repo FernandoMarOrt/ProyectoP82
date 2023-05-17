@@ -2,30 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package aplicacion;
+package application;
 
-import static aplicacion.BdFacturas.findAll;
-import entidades.Factura;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import entities.Factura;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author fer
  */
-public class consultarEspecifica extends javax.swing.JFrame {
+public class consultarTabla extends javax.swing.JFrame {
 
     /**
      * Creates new form consultarFactura
      */
-    public consultarEspecifica() {
+    public consultarTabla() {
         initComponents();
     }
 
@@ -45,9 +37,6 @@ public class consultarEspecifica extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -74,18 +63,13 @@ public class consultarEspecifica extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(153, 102, 255));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Buscar");
+        jButton6.setText("Atras");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
             }
         });
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, -1, -1));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 400, -1, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,66 +84,12 @@ public class consultarEspecifica extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 370, 250));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 80, 20));
-
-        jLabel11.setBackground(new java.awt.Color(153, 102, 255));
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Codigo de la factura a buscar:");
-        jLabel11.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(153, 102, 255), null));
-        jLabel11.setOpaque(true);
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 220, -1));
-
-        jButton7.setBackground(new java.awt.Color(153, 102, 255));
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Atras");
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, -1, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 370, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        // TODO add your handling code here:
-
-        List<Factura> listaFactura = findAll();
-
-        String pkBuscada = jTextField1.getText();
-
-        Factura aux = new Factura(pkBuscada);
-
-        if (listaFactura.contains(aux)) {
-
-            MostrarTabla();
-
-        } else {
-
-            JOptionPane.showMessageDialog(null, "El codigo introducido no corresponde a una factura en la base de datos");
-
-        }
-    }//GEN-LAST:event_jButton6MouseClicked
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-
-       
-    }//GEN-LAST:event_formWindowOpened
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
 
         consultarMenu consulFac1 = new consultarMenu();
@@ -172,11 +102,13 @@ public class consultarEspecifica extends javax.swing.JFrame {
         consulFac1.setResizable(false);
         //hacemos la ventana visible
         consulFac1.setVisible(true);
-    }//GEN-LAST:event_jButton7MouseClicked
+    }//GEN-LAST:event_jButton6MouseClicked
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        //Muestro la tabla cuando se abre la ventana
+        MostrarTabla();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -195,37 +127,32 @@ public class consultarEspecifica extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(consultarEspecifica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(consultarTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(consultarEspecifica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(consultarTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(consultarEspecifica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(consultarTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(consultarEspecifica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(consultarTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new consultarEspecifica().setVisible(true);
+                new consultarTabla().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 
@@ -239,22 +166,28 @@ public class consultarEspecifica extends javax.swing.JFrame {
 
         };
 
-        String pkBuscada = jTextField1.getText();
-
-        Factura faux = BdFacturas.findByPK(pkBuscada);
-        //Principales titulos de la tabla
+        //Array con los titulos de la tabla
         String titulos[] = {"PK", "Fecha", "Descripcion", "TotalImporte"};
-        //añado el array con los titulos al objeto modelotabla
+
+        //Asigno los titulos a la tabla
         modeloTabla.setColumnIdentifiers(titulos);
 
-        // uso la clase Object que es la mas generica 
-        Object[] objeto = {faux.getPk(), faux.getFechaEmision(),
-            faux.getDescripcion(), faux.getTotalImporteFactura()};
+        List<Factura> listaFacturas = BdFacturas.findAll(); //Relleno la lista con las facturas de la base de datos
 
-        // agrego el objeto a mi modelo de tabla 
-        modeloTabla.addRow(objeto);
+        if (listaFacturas != null) {
 
-        //añado el modelo tabla a el tableJframe
+            for (Factura f : listaFacturas) {
+                 //Array con los valores que van a ir en la tabla
+                Object[] objeto = {f.getPk(), f.getFechaEmision(),
+                    f.getDescripcion(), f.getTotalImporteFactura()};
+
+                //agrego el objeto a mi modelo de tabla 
+                modeloTabla.addRow(objeto);
+
+            }
+        }
+
+          //Le doy el modelo a la tabla
         table.setModel(modeloTabla);
 
     }

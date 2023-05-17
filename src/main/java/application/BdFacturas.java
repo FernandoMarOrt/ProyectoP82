@@ -1,7 +1,7 @@
 
-package aplicacion;
+package application;
 
-import entidades.Factura;
+import entities.Factura;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

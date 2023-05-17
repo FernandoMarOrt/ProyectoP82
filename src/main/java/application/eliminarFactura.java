@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package aplicacion;
+package application;
 
-import static aplicacion.BdFacturas.findAll;
-import entidades.Factura;
+import static application.BdFacturas.findAll;
+import entities.Factura;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -103,20 +103,20 @@ public class eliminarFactura extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         
-         List<Factura> listaFactura = findAll();
+         List<Factura> listaFactura = findAll(); //Relleno la lista con las facturas de la base de datos
 
         String pkBuscada = jTextField1.getText();
 
         Factura aux = new Factura(pkBuscada);
 
-        if (listaFactura.contains(aux)) {
+        if (listaFactura.contains(aux)) { //Si la factura con la clave primaria proporcionada esta en la tabla se elimina
 
             BdFacturas.deleteFactura(aux);
             
             JOptionPane.showMessageDialog(null, "Factura eliminada correctamente");
             
 
-        } else {
+        } else { //Si no salta un mensaje de error
             JOptionPane.showMessageDialog(null, "El codigo introducido no corresponde a ninguna factura en la base de datos");
         }
     }//GEN-LAST:event_jButton2MouseClicked

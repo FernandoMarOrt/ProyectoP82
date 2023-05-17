@@ -1,4 +1,4 @@
-package aplicacion;
+package application;
 
 public class ventanaInicio extends javax.swing.JFrame {
 
