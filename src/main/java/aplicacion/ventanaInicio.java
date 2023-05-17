@@ -47,7 +47,7 @@ public class ventanaInicio extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(242, 230, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 110, 210));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 100, 210));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagen1.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
@@ -65,7 +65,7 @@ public class ventanaInicio extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, 30));
 
         jButton2.setBackground(new java.awt.Color(153, 102, 255));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -75,7 +75,7 @@ public class ventanaInicio extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 150, 30));
 
         jButton3.setBackground(new java.awt.Color(153, 102, 255));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,7 +85,7 @@ public class ventanaInicio extends javax.swing.JFrame {
                 jButton3MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, 30));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, 30));
 
         jButton4.setBackground(new java.awt.Color(153, 102, 255));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,19 +95,24 @@ public class ventanaInicio extends javax.swing.JFrame {
                 jButton4MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, 30));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, -1, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file-add_114479.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file-delete_114438.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file-edit_114433.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file-search_114412.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banner.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, -1));
@@ -116,7 +121,7 @@ public class ventanaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        añadirFactura1 af = new añadirFactura1();
+        añadirFactura af = new añadirFactura();
          this.setVisible(false);
              // La ventana no se puede redimensionar
         af.setResizable(true);
@@ -130,7 +135,7 @@ public class ventanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-   eliminarFactura1 ef = new eliminarFactura1();
+   eliminarFactura ef = new eliminarFactura();
              // La ventana no se puede redimensionar
              this.setVisible(false);
         ef.setResizable(true);
@@ -141,7 +146,7 @@ public class ventanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-      modificarFactura1 mf = new modificarFactura1();
+      modificarFactura mf = new modificarFactura();
        this.setVisible(false);
              // La ventana no se puede redimensionar
         mf.setResizable(true);
@@ -152,7 +157,7 @@ public class ventanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        consultarFactura1 cf = new consultarFactura1();
+        consultarMenu cf = new consultarMenu();
          this.setVisible(false);
              // La ventana no se puede redimensionar
         cf.setResizable(true);
@@ -161,6 +166,10 @@ public class ventanaInicio extends javax.swing.JFrame {
         //hacemos la ventana visible
         cf.setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

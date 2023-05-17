@@ -8,67 +8,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-// Programa principal y métodos básicos del EntityManager
+//Métodos básicos del EntityManager
 
 public class BdFacturas {
-
-    public static void main(String[] args) {
-        // Se obtienen todas las instancias
-        List<Factura> listaFactura = findAll();
-
-        // Se imprime la lista
-        System.out.println("\n\nTodas las entidades ------------ ");
-        for (Factura f : listaFactura) {
-            System.out.println(f);
-        }
-//
-//        // Se obtiene una entidad y se imprime
-//        System.out.println("\n\nBuscar Vehiculo de matrícula 0034AAB ------------ ");
-//        // Si no existe, en este caso lanza excepción NoResultException
-//        Vehiculo aux = findByMatricula("0034AAB"); 
-//        System.out.println(aux);
-//
-//        // Creación de una entidad con el constructor por defecto y usando setters
-//        // Es lo habitual, por si no queremos asignar todos los atributos
-//        // No se asigna campo "id" porque lo hará la BD con auto increment
-//        Vehiculo v = new Vehiculo();
-//        v.setBastidor("6634543Z01");
-//        v.setMatricula("0998FRR");
-//        v.setDisponible(true);
-//        v.setMarca("Renault");
-//        v.setModelo("Clio");
-//        v.setPrecio(14.00);
-//        // Siempre se inserta el vehículo porque la BD asigna id diferentes
-//        // habría que controlar esta situación buscando previamente por algún atributo
-//        createVehiculo(v); 
-//
-//        // Se obtienen todas las instancias
-//        listaVehiculos = findAll();
-//        System.out.println("\n\nTodas las entidades después de crear una nueva ------------ ");
-//        listaVehiculos.forEach(System.out::println);
-//
-//        // Se modifica el precio del vehículo id = 1
-//        // Si no existe, en este caso lanza excepción NoResultException
-//        Vehiculo vehicModificar = findByPK(1);
-//        if (vehicModificar != null) {
-//            vehicModificar.setPrecio(138);
-//            modifyVehiculo(vehicModificar);
-//        }
-//
-//        // Se obtienen todas las instancias
-//        listaVehiculos = findAll();
-//        System.out.println("\n\nTodas las entidades después de modificar una ------------ ");
-//        listaVehiculos.forEach(System.out::println);
-//
-//        // Borrado del vehículo de matrícula 1235ACB
-//        Vehiculo vehicBorrar = findByMatricula("1235ACB");
-//        deleteVehiculo(vehicBorrar);
-//
-//        // Se obtienen todas las instancias
-//        listaVehiculos = findAll();
-//        System.out.println("\n\nTodas las entidades después de borrar una ------------ ");
-//        listaVehiculos.forEach(System.out::println);
-    }
     
     // Inserta un objeto en la tabla vehiculo. 
     public static void createFactura(Factura f) {
@@ -132,7 +74,7 @@ public class BdFacturas {
         Factura aux = null;
         // Se crea el objeto Query a partir de una SQL nativa, que permite pasar
         // código SQL directamente a la base de datos
-        Query q = em.createNativeQuery("Select * from factura where id = ?", Factura.class);
+        Query q = em.createNativeQuery("Select * from factura where pk = ?", Factura.class);
         // Se establece que el parámetro a usar en la query es la pk que se pasa como parámetro
         // al método
         q.setParameter(1, pk);

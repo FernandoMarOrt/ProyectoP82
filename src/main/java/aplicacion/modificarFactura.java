@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author tania
+ * @author fer
  */
 public class modificarFactura extends javax.swing.JFrame {
 
@@ -84,6 +84,11 @@ public class modificarFactura extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(153, 102, 255));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Atras");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -132,8 +137,58 @@ public class modificarFactura extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
 
-       
+        List<Factura> listaFactura = findAll();
+
+        String pkBuscada = jTextField1.getText();
+
+        Factura aux = new Factura(pkBuscada);
+
+        if (listaFactura.contains(aux)) {
+
+            
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            String pk = jTextField1.getText();
+            Date fechaemision = null;
+            try {
+                fechaemision = dateFormat.parse(jTextField2.getText());
+            } catch (ParseException ex) {
+                Logger.getLogger(modificarFactura.class.getName()).log(Level.SEVERE, "Introduce la fecha en el formato correcto", ex);
+            }
+            String descripcion = jTextArea2.getText();
+            double totalImporteFactura = Double.valueOf(jTextField4.getText());
+
+            Factura facturaModifi = new Factura(pk, fechaemision, descripcion, totalImporteFactura);
+
+
+            JOptionPane.showMessageDialog(null, "Se ha modificado la factura");
+            
+            BdFacturas.modifyFactura(facturaModifi);
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "El codigo introducido no corresponde a una factura de la base de datos");
+
+        }
+
+
+
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+
+        ventanaInicio venIni = new ventanaInicio();
+
+        this.setVisible(false);
+
+        // Posición de la ventana
+        venIni.setLocationRelativeTo(null);
+        // La ventana no se puede redimensionar
+        venIni.setResizable(false);
+        //hacemos la ventana visible
+        venIni.setVisible(true);
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments

@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author tania
+ * @author fer
  */
-public class añadirFactura1 extends javax.swing.JFrame {
+public class añadirFactura extends javax.swing.JFrame {
 
     /**
      * Creates new form añadirFactura1
      */
-    public añadirFactura1() {
+    public añadirFactura() {
         initComponents();
     }
 
@@ -155,18 +155,19 @@ public class añadirFactura1 extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
 
-        List<Factura> listaFactura = findAll();
+        List<Factura> listaFactura = findAll(); //Rellno la lista de facturas
 
         String pkBuscada = jTextField1.getText();
 
         Factura aux = new Factura(pkBuscada);
 
-        if (listaFactura.contains(aux)) {
-
+        if (listaFactura.contains(aux)) { //Busco en la lista la factura con la pk proporcionada
+            
+            //Si corresponde a una factura ya 
             JOptionPane.showMessageDialog(null, "El codigo introducido ya corresponde a una factura en la base de datos");
 
         } else {
-
+            //Formato de la fecha
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             String pk = jTextField1.getText();
@@ -183,7 +184,7 @@ public class añadirFactura1 extends javax.swing.JFrame {
 
             BdFacturas.createFactura(nuevaFactura);
 
-            JOptionPane.showMessageDialog(null, "Se ha crea");
+            JOptionPane.showMessageDialog(null, "Se ha creado la nueva factura");
 
         }
     }//GEN-LAST:event_jButton5MouseClicked
@@ -205,20 +206,21 @@ public class añadirFactura1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(añadirFactura1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(añadirFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(añadirFactura1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(añadirFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(añadirFactura1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(añadirFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(añadirFactura1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(añadirFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new añadirFactura1().setVisible(true);
+                new añadirFactura().setVisible(true);
             }
         });
     }
